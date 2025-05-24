@@ -1,17 +1,29 @@
 const express = require("express");
-
+ const connectDB = require("./config/database");
 const app = express();
+const User = require("./models/user");
 
-const {adminAuth, userAuth} = require("./middlewares/auth");
-
-app.get("/admin", adminAuth, (req, res) => {
-    res.send("Admin Area");
+app.post("/singup", async (req, res) => {
+ const user = new User ({
+    firstname : "virat",
+    lastname : "konderu",
+    emailId : "viratrishi123@gmail.com",
+    password : "virat123", 
+ });
+  
+ await user.save();
+ res.send("user Added successfully")
 });
 
-app.get("/user", userAuth, (req, res) => {
-    res.send("Admin Area");
-});
-
+connectDB()
+.then(( ) => {
+    console.log("Database connection established..."); 
     app.listen(7777, () => {
-        console.log("server  is running on port 7777");
-    });
+        console.log("server  is successfully listening on port 7777...");
+    });  
+})
+.catch((err) => {
+    console.error("Database cannot be connected");
+});
+
+ 
