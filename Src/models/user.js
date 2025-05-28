@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const userSchema  = new mongoose.Schema({
-firstName: {
-type: String,
-},
-LastName: {
-type: String,
-},
+        firstname: {
+          type: String,
+                    },
+              lastname: {
+                  type: String,
+                        },
 emailId: {
 type: String,
 },
